@@ -1,0 +1,72 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Mobile App using JavaScript / Angular</title><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle],
+      section[data-field=description] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">Mobile App using JavaScript / Angular</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+How to create awesome mobile applications using Javascript? I have an answer — Cordova. A lot has already been written about hybrid and…
+</section>
+<section data-field="body" class="e-content">
+<section name="9641" class="section section--body section--first"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="e0cd" id="e0cd" class="graf graf--h3 graf--leading graf--title">Mobile App using JavaScript / Angular</h3><figure name="024c" id="024c" class="graf graf--figure graf-after--h3"><img class="graf-image" data-image-id="1*xQ3-LhV8GjoA9kJ7EOAbmg.png" data-width="1920" data-height="1080" data-is-featured="true" src="https://cdn-images-1.medium.com/max/800/1*xQ3-LhV8GjoA9kJ7EOAbmg.png"></figure><p name="de05" id="de05" class="graf graf--p graf-after--figure">How to create awesome mobile applications using Javascript? I have an answer — Cordova. A lot has already been written about hybrid and native applications, and their advantages and disadvantages. Including a lot written about Cordova. But over time, everything changes and those features and methods that worked before are not available now. Therefore, today I want to pay attention to the actual features of developing a mobile application for iOS using Cordova!</p><blockquote name="2399" id="2399" class="graf graf--blockquote graf-after--p">Purpose: To transfer the finished application on Angular to a mobile application.</blockquote><p name="740f" id="740f" class="graf graf--p graf-after--blockquote"><strong class="markup--strong markup--p-strong">Minimal required stack:</strong><br>1. Angular app<br>2. Backend app(nodejs, express)<br>2. Cordova app<br>3. Xcode</p><p name="b313" id="b313" class="graf graf--p graf-after--p">How to install Cordova, create Angular and Cordova apps are described in detail in the corresponding documentation (<a href="https://angular.io/start" data-href="https://angular.io/start" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank">for Angular</a> / <a href="https://cordova.apache.org/#getstarted" data-href="https://cordova.apache.org/#getstarted" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank">for Cordova</a>), so we will not waste time on this, and we will immediately move on to important practical features that almost no one talks about.</p><p name="7189" id="7189" class="graf graf--p graf-after--p"><strong class="markup--strong markup--p-strong">Actions in the Angular app:</strong><br>1. Build your app and look at “dist” directory.</p><pre name="8dbf" id="8dbf" class="graf graf--pre graf-after--p">ng build --configuration production</pre><p name="5ac3" id="5ac3" class="graf graf--p graf-after--pre">2. rename “dist” to “www”.<br>3. copy “www” directory.</p><p name="07a4" id="07a4" class="graf graf--p graf-after--p"><strong class="markup--strong markup--p-strong">Actions in the Cordova app:<br></strong>1. replace “www” directory with copied.</p><p name="72f4" id="72f4" class="graf graf--p graf-after--p">2. cordova platform add ios<br>3. add cordova plugins:<br>- cordova plugins add cordova-plugin-device<br>- cordova plugins add cordova-plugin-ionic-webview<br>- cordova plugins add cordova-plugin-splashscreen<br>- cordova plugins add cordova-plugin-statusbar<br>4. cordova build ios (to compile code from “www” to “platforms/ios”)</p><p name="f263" id="f263" class="graf graf--p graf-after--p"><strong class="markup--strong markup--p-strong">Actions in the Xcode:<br></strong>Then you need open Xcode and run files from “platforms/ios”. Don’t worry if it doesn’t start right away. If you are new to Xcode you need to set it first (create apple developer account, sign your app etc.).<br>After that you can open Cordova app in the simulator or your device.</p><p name="4ff3" id="4ff3" class="graf graf--p graf-after--p"><strong class="markup--strong markup--p-strong">Actions in the backend app:<br></strong>The next thing you might encounter is Cross-Origin Resource Sharing (<a href="https://developer.mozilla.org/en-US/docs/Glossary/CORS" data-href="https://developer.mozilla.org/en-US/docs/Glossary/CORS" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank">CORS</a>).</p><blockquote name="f757" id="f757" class="graf graf--blockquote graf-after--p">Cross-Origin Resource Sharing (<a href="https://developer.mozilla.org/en-US/docs/Glossary/CORS" data-href="https://developer.mozilla.org/en-US/docs/Glossary/CORS" class="markup--anchor markup--blockquote-anchor" rel="noopener" target="_blank">CORS</a>) is an <a href="https://developer.mozilla.org/en-US/docs/Glossary/HTTP" data-href="https://developer.mozilla.org/en-US/docs/Glossary/HTTP" class="markup--anchor markup--blockquote-anchor" rel="noopener" target="_blank">HTTP</a>-header based mechanism that allows a server to indicate any <a href="https://developer.mozilla.org/en-US/docs/Glossary/Origin" data-href="https://developer.mozilla.org/en-US/docs/Glossary/Origin" class="markup--anchor markup--blockquote-anchor" rel="noopener" target="_blank">origins</a> (domain, scheme, or port) other than its own from which a browser should permit loading resources. CORS also relies on a mechanism by which browsers make a “preflight” request to the server hosting the cross-origin resource, in order to check that the server will permit the actual request. In that preflight, the browser sends headers that indicate the HTTP method and headers that will be used in the actual request.</blockquote><p name="34c7" id="34c7" class="graf graf--p graf-after--blockquote">It solved by adding to your backend this code:</p><pre name="07ae" id="07ae" class="graf graf--pre graf-after--p">let allowedOrigins = [&quot;ionic://your_domain&quot;, &quot;app://your_domain&quot;];</pre><p name="3b10" id="3b10" class="graf graf--p graf-after--pre">Your created iOS app isn’t support <em class="markup--em markup--p-em">http/https</em> protocols and uses “<em class="markup--em markup--p-em">ionic”</em> or “<em class="markup--em markup--p-em">app”.</em></p><p name="32dc" id="32dc" class="graf graf--p graf-after--p"><strong class="markup--strong markup--p-strong">Actions in config.xml:<br></strong>Cordova app contains file <em class="markup--em markup--p-em">config.xml</em> for more detailed configuration (app icon, splashscreen, statusbar etc.). But even here there are some nuances that you should pay attention to.<br>1. For connect your backed and frontend you need to add:</p><pre name="d50c" id="d50c" class="graf graf--pre graf-after--p">&lt;preference name=”hostname” value=”your_production_domain” /&gt;</pre><p name="a6ca" id="a6ca" class="graf graf--p graf-after--pre">2. splashcreen (it takes only center of your image)<br>3. app icon (need to add all types of icon)<br>4. from Iphone 11 you need padding top of “body”<br>5. After all changes in config.xml you need to run command — “cordova build ios” and rebuild it in Xcode again.<br>I attached my example of config.xml because it is very important part.</p><pre name="97e5" id="97e5" class="graf graf--pre graf-after--p graf--trailing">&lt;?xml version=&#39;1.0&#39; encoding=&#39;utf-8&#39;?&gt;<br>&lt;widget id=&quot;your_id&quot; version=&quot;1.0.0&quot;&gt;<br>    &lt;name&gt;Name&lt;/name&gt;<br>    &lt;description&gt;description&lt;/description&gt;<br>    &lt;author email=&quot;author&quot;&gt;<br>        author<br>    &lt;/author&gt;<br>    &lt;content src=&quot;index.html&quot; /&gt;<br>    &lt;allow-intent href=&quot;http://*/*&quot; /&gt;<br>    &lt;allow-intent href=&quot;https://*/*&quot; /&gt;<br>    &lt;preference name=&quot;scheme&quot; value=&quot;app&quot; /&gt;<br>    &lt;preference name=&quot;hostname&quot; value=&quot;your_domain&quot; /&gt;<br>    &lt;preference name=&quot;ScrollEnabled&quot; value=&quot;true&quot; /&gt;<br>    &lt;platform name=&quot;ios&quot;&gt;<br>        &lt;splash src=&quot;res/screen/ios/Default@3x~universal~anyany.png&quot; /&gt;<br><br>        &lt;icon src=&quot;res/ios/icon-60@3x.png&quot; width=&quot;180&quot; height=&quot;180&quot; /&gt;<br>        &lt;!-- iOS 7.0+ --&gt;<br>        &lt;!-- iPhone / iPod Touch  --&gt;<br>        &lt;icon src=&quot;res/ios/icon-60.png&quot; width=&quot;60&quot; height=&quot;60&quot; /&gt;<br>        &lt;icon src=&quot;res/ios/icon-60@2x.png&quot; width=&quot;120&quot; height=&quot;120&quot; /&gt;<br>        &lt;!-- iPad --&gt;<br>        &lt;icon src=&quot;res/ios/icon-76.png&quot; width=&quot;76&quot; height=&quot;76&quot; /&gt;<br>        &lt;icon src=&quot;res/ios/icon-76@2x.png&quot; width=&quot;152&quot; height=&quot;152&quot; /&gt;<br>        &lt;!-- Spotlight Icon --&gt;<br>        &lt;icon src=&quot;res/ios/icon-40.png&quot; width=&quot;40&quot; height=&quot;40&quot; /&gt;<br>        &lt;icon src=&quot;res/ios/icon-40@2x.png&quot; width=&quot;80&quot; height=&quot;80&quot; /&gt;<br>        &lt;!-- iOS 6.1 --&gt;<br>        &lt;!-- iPhone / iPod Touch --&gt;<br>        &lt;icon src=&quot;res/ios/icon.png&quot; width=&quot;57&quot; height=&quot;57&quot; /&gt;<br>        &lt;icon src=&quot;res/ios/icon@2x.png&quot; width=&quot;114&quot; height=&quot;114&quot; /&gt;<br>        &lt;!-- iPad --&gt;<br>        &lt;icon src=&quot;res/ios/icon-72.png&quot; width=&quot;72&quot; height=&quot;72&quot; /&gt;<br>        &lt;icon src=&quot;res/ios/icon-72@2x.png&quot; width=&quot;144&quot; height=&quot;144&quot; /&gt;<br>        &lt;!-- iPad Pro --&gt;<br>        &lt;icon src=&quot;res/ios/icon-167.png&quot; width=&quot;167&quot; height=&quot;167&quot; /&gt;<br>        &lt;!-- iPhone Spotlight and Settings Icon --&gt;<br>        &lt;icon src=&quot;res/ios/icon-small.png&quot; width=&quot;29&quot; height=&quot;29&quot; /&gt;<br>        &lt;icon src=&quot;res/ios/icon-small@2x.png&quot; width=&quot;58&quot; height=&quot;58&quot; /&gt;<br>        &lt;icon src=&quot;res/ios/icon-small@3x.png&quot; width=&quot;87&quot; height=&quot;87&quot; /&gt;<br>        &lt;!-- iPad Spotlight and Settings Icon --&gt;<br>        &lt;icon src=&quot;res/ios/icon-50.png&quot; width=&quot;50&quot; height=&quot;50&quot; /&gt;<br>        &lt;icon src=&quot;res/ios/icon-50@2x.png&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt;<br>        &lt;!-- iTunes Marketing Image --&gt;<br>        &lt;icon src=&quot;res/ios/icon-1024.png&quot; width=&quot;1024&quot; height=&quot;1024&quot; /&gt;<br>    &lt;/platform&gt;<br>    &lt;preference name=&quot;SplashScreenDelay&quot; value=&quot;3000&quot; /&gt;<br>&lt;/widget&gt;</pre></div></div></section><section name="9e62" class="section section--body section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><p name="af39" id="af39" class="graf graf--p graf--leading graf--trailing">I tried to describe all the features that I encountered when creating the iOS mobile application using Angular and Cordova. I think that it is really good opportunity to convert your web app into mobile app.</p></div></div></section>
+</section>
+<footer><p>By <a href="https://medium.com/@teslenkooleg2017" class="p-author h-card">Oleh Teslenko</a> on <a href="https://medium.com/p/c4864463c49"><time class="dt-published" datetime="2022-05-13T09:25:03.136Z">May 13, 2022</time></a>.</p><p><a href="https://medium.com/@teslenkooleg2017/angular-mobile-app-by-cordova-c4864463c49" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on September 8, 2024.</p></footer></article></body></html>

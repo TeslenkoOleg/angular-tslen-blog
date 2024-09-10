@@ -1,0 +1,72 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Angular 13: Create multiple dynamic components using directive — ngFor.</title><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle],
+      section[data-field=description] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">Angular 13: Create multiple dynamic components using directive — ngFor.</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+Of course, there are many articles about creating dynamic components in Angular, and most of them describe the simplest pattern from the…
+</section>
+<section data-field="body" class="e-content">
+<section name="0982" class="section section--body section--first"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="61a2" id="61a2" class="graf graf--h3 graf--leading graf--title">Multiple dynamic components using directive — *ngFor | Angular</h3><figure name="5b99" id="5b99" class="graf graf--figure graf-after--h3"><img class="graf-image" data-image-id="1*wqBOf_Hc_c2MxgUjnGy4Og.png" data-width="1920" data-height="1080" data-is-featured="true" src="https://cdn-images-1.medium.com/max/800/1*wqBOf_Hc_c2MxgUjnGy4Og.png"></figure><p name="acf1" id="acf1" class="graf graf--p graf-after--figure">I would like to show you the features that can help to create dynamic components in Angular. Of course, there are many articles about creating dynamic components in Angular, and most of them describe the simplest pattern from the documentation.</p><p name="a7ee" id="a7ee" class="graf graf--p graf-after--p">However, the purpose of this article is to show how to create <strong class="markup--strong markup--p-strong"><em class="markup--em markup--p-em">multiple identical dynamic components</em></strong> with different inputs using <strong class="markup--strong markup--p-strong"><em class="markup--em markup--p-em">*ngFor </em></strong>.</p><p name="2ee1" id="2ee1" class="graf graf--p graf-after--p">This is an example of a simple single dynamic component.</p><figure name="2bbc" id="2bbc" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="1*s3A2gTASNPRq3a7phDso1Q.png" data-width="1432" data-height="1306" src="https://cdn-images-1.medium.com/max/800/1*s3A2gTASNPRq3a7phDso1Q.png"><figcaption class="imageCaption">main.component.ts</figcaption></figure><figure name="c452" id="c452" class="graf graf--figure graf-after--figure graf--trailing"><img class="graf-image" data-image-id="1*o68JDBFBKe1BoaA2k6nOQA.png" data-width="1080" data-height="198" src="https://cdn-images-1.medium.com/max/800/1*o68JDBFBKe1BoaA2k6nOQA.png"><figcaption class="imageCaption">main.component.html</figcaption></figure></div></div></section><section name="c944" class="section section--body"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><p name="5533" id="5533" class="graf graf--p graf--leading">But when the goal is to create several identical components with different data, some questions may arise. If we only add <strong class="markup--strong markup--p-strong"><em class="markup--em markup--p-em">*ngFor</em></strong> to our <strong class="markup--strong markup--p-strong"><em class="markup--em markup--p-em">main.component.html</em></strong> and run app, we received an error.</p><figure name="f80c" id="f80c" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="1*IHNS1UlvZpyXz7Wu3KpoKA.png" data-width="1094" data-height="294" src="https://cdn-images-1.medium.com/max/800/1*IHNS1UlvZpyXz7Wu3KpoKA.png"><figcaption class="imageCaption">main.component.html</figcaption></figure><p name="c986" id="c986" class="graf graf--p graf-after--figure">First of all, we need to change <strong class="markup--strong markup--p-strong"><em class="markup--em markup--p-em">@ViewChild</em></strong> =&gt; <strong class="markup--strong markup--p-strong"><em class="markup--em markup--p-em">@ViewChildren</em></strong> and type of variable <strong class="markup--strong markup--p-strong"><em class="markup--em markup--p-em">ViewContainerRef </em></strong>=&gt;<strong class="markup--strong markup--p-strong"><em class="markup--em markup--p-em"> QueryList&lt;ViewContainerRef&gt;</em></strong>. Thus, after loading the page, we will have an array of elements that have the tag <strong class="markup--strong markup--p-strong"><em class="markup--em markup--p-em">#dynamic</em></strong>.</p><figure name="187c" id="187c" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="1*GwBnXmlzmzu4bSODsXFcEA.png" data-width="1632" data-height="140" src="https://cdn-images-1.medium.com/max/800/1*GwBnXmlzmzu4bSODsXFcEA.png"><figcaption class="imageCaption">main.component.ts</figcaption></figure><p name="8921" id="8921" class="graf graf--p graf-after--figure">Next, we need to iterate the array with our html elements and create for each dynamic component.</p><figure name="2211" id="2211" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="1*3JvL69L4_VLkKSdZcpd2SQ.png" data-width="1136" data-height="294" src="https://cdn-images-1.medium.com/max/800/1*3JvL69L4_VLkKSdZcpd2SQ.png"><figcaption class="imageCaption">main.component.ts</figcaption></figure><p name="230b" id="230b" class="graf graf--p graf-after--figure">I used an array with static data that is passed to each component. Full code example below.</p><figure name="dae5" id="dae5" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="1*A_nD17eq_Qsd5d1cDf4-vA.png" data-width="644" data-height="236" src="https://cdn-images-1.medium.com/max/800/1*A_nD17eq_Qsd5d1cDf4-vA.png"><figcaption class="imageCaption">output result</figcaption></figure><figure name="ef3e" id="ef3e" class="graf graf--figure graf-after--figure"><img class="graf-image" data-image-id="1*xQ_4NTno5NMTRzAEhNFzzg.png" data-width="1654" data-height="1452" src="https://cdn-images-1.medium.com/max/800/1*xQ_4NTno5NMTRzAEhNFzzg.png"><figcaption class="imageCaption">main.component.ts</figcaption></figure><p name="d9fe" id="d9fe" class="graf graf--p graf-after--figure graf--trailing">This way I used one component to create multiple dynamic components but with different input parameters.</p></div></div></section><section name="c645" class="section section--body section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><p name="1251" id="1251" class="graf graf--p graf--leading graf--trailing">Thanks for reading. if you like this article, please 👏 or write a comment. P.S. Please note that in Angular, the creation of dynamic components has been simplified, so even in older version ( to v13) your syntax will be slightly different.</p></div></div></section>
+</section>
+<footer><p>By <a href="https://medium.com/@teslenkooleg2017" class="p-author h-card">Oleh Teslenko</a> on <a href="https://medium.com/p/effe0850a69d"><time class="dt-published" datetime="2022-04-10T04:52:57.404Z">April 10, 2022</time></a>.</p><p><a href="https://medium.com/@teslenkooleg2017/angular-13-create-multiple-dynamic-components-using-directive-ngfor-effe0850a69d" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on September 8, 2024.</p></footer></article></body></html>

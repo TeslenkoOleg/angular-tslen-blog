@@ -1,0 +1,72 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Copy Text on Click in Angular</title><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle],
+      section[data-field=description] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">Copy Text on Click in Angular</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+Let me show you how you can copy the text of any HTML element in Angular. Many different ways exist to do this. But I am going to show you…
+</section>
+<section data-field="body" class="e-content">
+<section name="2542" class="section section--body section--first"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="b470" id="b470" class="graf graf--h3 graf--leading graf--title">Copy Text on Click in Angular</h3><figure name="0457" id="0457" class="graf graf--figure graf-after--h3"><img class="graf-image" data-image-id="1*DIL1pDOtiu_V3ohiRF4RMg.jpeg" data-width="4932" data-height="3292" data-is-featured="true" src="https://cdn-images-1.medium.com/max/800/1*DIL1pDOtiu_V3ohiRF4RMg.jpeg"></figure><p name="dafe" id="dafe" class="graf graf--p graf-after--figure graf--trailing">Let me show you how you can copy the text of any HTML element in Angular. Many different ways exist to do this. But I am going to show you the most native one — without third-party solutions.</p></div></div></section><section name="5cd9" class="section section--body"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><p name="da39" id="da39" class="graf graf--p graf--leading">We have to do next actions:<br>1. Create directive<br>2. Added directive into html element<br>3. Click and copy</p><pre name="d662" id="d662" class="graf graf--pre graf-after--p">// Create directive</pre><pre name="e82f" id="e82f" class="graf graf--pre graf-after--pre">ng g directive</pre><p name="1175" id="1175" class="graf graf--p graf-after--pre">Add the next logic to our directive:<br> — @Input — it’s for text would you like to copy it.<br> — @HostListener —listener for click action.<br> — onClick(event) — handler for click action.<br> — event.preventDefault() — tells the user agent that if the event does not get explicitly handled, its default action should not be taken as it normally would be.<br> — <strong class="markup--strong markup--p-strong"><em class="markup--em markup--p-em">navigator</em></strong>.clipboard.writeText — for copy text.</p><pre name="d50b" id="d50b" class="graf graf--pre graf-after--p">// copy-text.directive.ts</pre><pre name="a325" id="a325" class="graf graf--pre graf-after--pre">import {Directive, HostListener, Input} from &#39;@angular/core&#39;;<br><br>@Directive({<br>  selector: &#39;[appCopyText]&#39;<br>})<br>export class CopyTextDirective {<br><br>  @Input() public copyText = &#39;&#39;;<br><br>  constructor() {}<br><br>  @HostListener(&#39;click&#39;, [&#39;$event&#39;])<br>  public onClick(event: MouseEvent): void {<br><br>    event.preventDefault();<br>    if (!this.copyText) {<br>      return;<br>    }<br>    <strong class="markup--strong markup--pre-strong"><em class="markup--em markup--pre-em">navigator</em></strong>.clipboard.writeText(this.copyText.toString());<br>  }<br><br>}</pre><p name="85b4" id="85b4" class="graf graf--p graf-after--pre">Create html element using directive:</p><pre name="b9c2" id="b9c2" class="graf graf--pre graf-after--p">// app.component.html</pre><pre name="aecd" id="aecd" class="graf graf--pre graf-after--pre">&lt;p appCopyText [copyText]=&quot;&#39;Text has been copied&#39;&quot;&gt;click me to copy&lt;/p&gt;</pre><p name="e77f" id="e77f" class="graf graf--p graf-after--pre graf--trailing">…that’s all…</p></div></div></section><section name="373d" class="section section--body section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><p name="7c91" id="7c91" class="graf graf--p graf--leading">It is a very easy and simple example, but very useful and without extra additional solutions.</p><p name="8d6e" id="8d6e" class="graf graf--p graf-after--p">Thanks for reading, if you like this article you can 👏 or write a comment.<br>See also other articles about Angular features:</p><div name="2a4e" id="2a4e" class="graf graf--mixtapeEmbed graf-after--p"><a href="https://medium.com/@teslenkooleg2017/pipes-chain-in-angular-using-async-pipe-d83d25c808b4" data-href="https://medium.com/@teslenkooleg2017/pipes-chain-in-angular-using-async-pipe-d83d25c808b4" class="markup--anchor markup--mixtapeEmbed-anchor" title="https://medium.com/@teslenkooleg2017/pipes-chain-in-angular-using-async-pipe-d83d25c808b4"><strong class="markup--strong markup--mixtapeEmbed-strong">Pipes chain in Angular — using async pipe</strong><br><em class="markup--em markup--mixtapeEmbed-em">You can find a lot of examples how pipes works, but there is not enough information on how to use the asynchronous pipe…</em>medium.com</a><a href="https://medium.com/@teslenkooleg2017/pipes-chain-in-angular-using-async-pipe-d83d25c808b4" class="js-mixtapeImage mixtapeImage u-ignoreBlock" data-media-id="8a44803256d289bfec65e4ca6798e6ca" data-thumbnail-img-id="1*WBpTzEm6VgiQZiJOvTCmyQ.jpeg" style="background-image: url(https://cdn-images-1.medium.com/fit/c/160/160/1*WBpTzEm6VgiQZiJOvTCmyQ.jpeg);"></a></div><div name="b5b4" id="b5b4" class="graf graf--mixtapeEmbed graf-after--mixtapeEmbed"><a href="https://towardsdev.com/show-more-button-in-angular-3eb4f8392da8" data-href="https://towardsdev.com/show-more-button-in-angular-3eb4f8392da8" class="markup--anchor markup--mixtapeEmbed-anchor" title="https://towardsdev.com/show-more-button-in-angular-3eb4f8392da8"><strong class="markup--strong markup--mixtapeEmbed-strong">Show more button in Angular</strong><br><em class="markup--em markup--mixtapeEmbed-em">Have you ever have a task with large lists?<br>Sometimes we need to hide part of items list and show it when user will…</em>towardsdev.com</a><a href="https://towardsdev.com/show-more-button-in-angular-3eb4f8392da8" class="js-mixtapeImage mixtapeImage u-ignoreBlock" data-media-id="d1943c63e2288b6dc591a29743ebf273" data-thumbnail-img-id="1*k6EJPQDYsXsMFodA1R_2lA.jpeg" style="background-image: url(https://cdn-images-1.medium.com/fit/c/160/160/1*k6EJPQDYsXsMFodA1R_2lA.jpeg);"></a></div><div name="4275" id="4275" class="graf graf--mixtapeEmbed graf-after--mixtapeEmbed graf--trailing"><a href="https://medium.com/@teslenkooleg2017/fade-in-out-animations-in-angular-31a80949cd2e" data-href="https://medium.com/@teslenkooleg2017/fade-in-out-animations-in-angular-31a80949cd2e" class="markup--anchor markup--mixtapeEmbed-anchor" title="https://medium.com/@teslenkooleg2017/fade-in-out-animations-in-angular-31a80949cd2e"><strong class="markup--strong markup--mixtapeEmbed-strong">Fade in(out) Animations in Angular</strong><br><em class="markup--em markup--mixtapeEmbed-em">Animation is a very important part of any web application. It brings life to your code. If your context appears and…</em>medium.com</a><a href="https://medium.com/@teslenkooleg2017/fade-in-out-animations-in-angular-31a80949cd2e" class="js-mixtapeImage mixtapeImage u-ignoreBlock" data-media-id="7c5219704e1f5aba51ce4f188e6363f3" data-thumbnail-img-id="1*nSOwi28F_oRSxG1DyKWlxQ.jpeg" style="background-image: url(https://cdn-images-1.medium.com/fit/c/160/160/1*nSOwi28F_oRSxG1DyKWlxQ.jpeg);"></a></div></div></div></section>
+</section>
+<footer><p>By <a href="https://medium.com/@teslenkooleg2017" class="p-author h-card">Oleh Teslenko</a> on <a href="https://medium.com/p/c21c27ff4d04"><time class="dt-published" datetime="2022-10-03T07:18:32.901Z">October 3, 2022</time></a>.</p><p><a href="https://medium.com/@teslenkooleg2017/copy-text-onclick-in-angular-c21c27ff4d04" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on September 8, 2024.</p></footer></article></body></html>

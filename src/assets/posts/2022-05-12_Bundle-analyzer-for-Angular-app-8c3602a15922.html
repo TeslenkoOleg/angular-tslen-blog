@@ -1,0 +1,72 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Bundle analyzer for Angular app</title><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle],
+      section[data-field=description] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">Bundle analyzer for Angular app</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+Sooner or later, when your application grows and becomes quite large, there is a need to optimize your code.
+</section>
+<section data-field="body" class="e-content">
+<section name="43ab" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="d110" id="d110" class="graf graf--h3 graf--leading graf--title">Bundle analyzer for Angular app</h3><figure name="d7f6" id="d7f6" class="graf graf--figure graf-after--h3"><img class="graf-image" data-image-id="1*FrPAOIGTpQyIadsRgMV5BQ.png" data-width="500" data-height="500" data-is-featured="true" src="https://cdn-images-1.medium.com/max/800/1*FrPAOIGTpQyIadsRgMV5BQ.png"></figure><p name="8ca4" id="8ca4" class="graf graf--p graf-after--figure">Sooner or later, when your application grows and becomes quite large, there is a need to optimize your code.</p><p name="8059" id="8059" class="graf graf--p graf-after--p">One such tool is the webpack bundle analyzer. As stated in the documentation:</p><blockquote name="afb8" id="afb8" class="graf graf--blockquote graf-after--p">Visualize size of webpack output files with an interactive zoomable treemap.<br>This module will help you:<br>1. Realize what’s <em class="markup--em markup--blockquote-em">really</em> inside your bundle<br>2. Find out what modules make up the most of its size<br>3. Find modules that got there by mistake<br>4. Optimize it!</blockquote><p name="1871" id="1871" class="graf graf--p graf-after--blockquote">First of all, we need to install <em class="markup--em markup--p-em">webpack bundle analyzer</em>.<br><code class="markup--code markup--p-code">npm install --save-dev webpack-bundle-analyzer<br></code>Then we create file dist/stats.json with command:<br><code class="markup--code markup--p-code">ng build --stats-json<br></code>Run analyzer:<br><code class="markup--code markup--p-code">npx webpack-bundle-analyzer dist/stats.json</code></p><p name="6d50" id="6d50" class="graf graf--p graf-after--p">Webpack bundle analyzer is started at <a href="http://127.0.0.1:8888" data-href="http://127.0.0.1:8888" class="markup--anchor markup--p-anchor" rel="nofollow noopener" target="_blank">http://127.0.0.1:8888</a><br>You can open your browser and see what size is used every module:</p><figure name="a13a" id="a13a" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="1*W8NimvPkbhqz2hcZE7rK2w.png" data-width="2862" data-height="1548" src="https://cdn-images-1.medium.com/max/800/1*W8NimvPkbhqz2hcZE7rK2w.png"></figure><p name="e4a0" id="e4a0" class="graf graf--p graf-after--figure">The bundle size is 198.44 KB now. <br>Now we import “moment”module and look it again.</p><pre name="b910" id="b910" class="graf graf--pre graf-after--p">import { Component } from &#39;@angular/core&#39;;<br>import * as moment from &#39;moment&#39;;<br><br>@Component({<br>  selector: &#39;app-root&#39;,<br>  templateUrl: &#39;./app.component.html&#39;,<br>  styleUrls: [&#39;./app.component.sass&#39;]<br>})<br>export class AppComponent {<br>  ngOnInit(){<br>    let date = <em class="markup--em markup--pre-em">moment</em>().date();<br>  }<br>}</pre><figure name="95cb" id="95cb" class="graf graf--figure graf-after--pre"><img class="graf-image" data-image-id="1*kYSJDso13JwplOwktyu2VQ.png" data-width="2092" data-height="1158" src="https://cdn-images-1.medium.com/max/800/1*kYSJDso13JwplOwktyu2VQ.png"></figure><figure name="2ec7" id="2ec7" class="graf graf--figure graf-after--figure"><img class="graf-image" data-image-id="1*tvJILlKCqUTq7wTYrahYSQ.png" data-width="2086" data-height="1144" src="https://cdn-images-1.medium.com/max/800/1*tvJILlKCqUTq7wTYrahYSQ.png"></figure><p name="a6ec" id="a6ec" class="graf graf--p graf-after--figure">The bundle size is grown up to 572.95 KB. It is too much for app like this and you have to replace this module with another. Anyway if you want to use <em class="markup--em markup--p-em">moment</em> in your project you can decrease size using <em class="markup--em markup--p-em">custom-webpack.<br></em>First of all, install it.</p><pre name="dc78" id="dc78" class="graf graf--pre graf-after--p">npm install --save-dev @angular-builders/custom-webpack</pre><p name="8118" id="8118" class="graf graf--p graf-after--pre">Create in you root path <em class="markup--em markup--p-em">webpack.config.js.</em> I’ll ignore <em class="markup--em markup--p-em">moment locale.</em></p><pre name="e887" id="e887" class="graf graf--pre graf-after--p">&quot;use strict&quot;;<br><br>const webpack = <em class="markup--em markup--pre-em">require</em>(&quot;webpack&quot;);<br><br>module.exports = {<br>        module: {<br>    rules: [],<br>},<br>plugins: [<br>    new webpack.IgnorePlugin({<br>        resourceRegExp: /^\.\/locale$/,<br>        contextRegExp: /moment$/,<br>    })<br>],<br>};</pre><p name="5ac3" id="5ac3" class="graf graf--p graf-after--pre">Change build options in your angular.json:</p><pre name="0275" id="0275" class="graf graf--pre graf-after--p">&quot;architect&quot;: {<br>  &quot;build&quot;: {<br>    &quot;builder&quot;: &quot;@angular-builders/custom-webpack:browser&quot;,<br>    &quot;options&quot;: {<br>      &quot;customWebpackConfig&quot;: {<br>        &quot;path&quot;: &quot;./webpack.config.js&quot;,<br>        &quot;replaceDuplicatePlugins&quot;: true<br>      },<br>    }<br>  }<br>}</pre><p name="0340" id="0340" class="graf graf--p graf-after--pre">Then you need to build (<code class="markup--code markup--p-code">ng build --stats-json</code>)your app and run analyzer again.</p><figure name="13f4" id="13f4" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="1*ya5aOqKry9ONEn0Jz-aYMA.png" data-width="2708" data-height="1446" src="https://cdn-images-1.medium.com/max/800/1*ya5aOqKry9ONEn0Jz-aYMA.png"></figure><p name="c89d" id="c89d" class="graf graf--p graf-after--figure">You can see that moment locale is disappeared and our bundle size is decreased, but my app is still good working.</p><p name="f8cd" id="f8cd" class="graf graf--p graf-after--p graf--trailing">It can be different modules in your case, but you always can manipulate it.</p></div></div></section>
+</section>
+<footer><p>By <a href="https://medium.com/@teslenkooleg2017" class="p-author h-card">Oleh Teslenko</a> on <a href="https://medium.com/p/8c3602a15922"><time class="dt-published" datetime="2022-05-12T09:09:21.682Z">May 12, 2022</time></a>.</p><p><a href="https://medium.com/@teslenkooleg2017/bundle-analyzer-for-angular-app-8c3602a15922" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on September 8, 2024.</p></footer></article></body></html>
