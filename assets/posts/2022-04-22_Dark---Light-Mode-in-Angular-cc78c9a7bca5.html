@@ -1,0 +1,72 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Dark | Light Mode in Angular</title><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle],
+      section[data-field=description] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">Dark | Light Mode in Angular</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+If you want to have a user friendly interface for your website, you should add ability to switch a mode. I show the simplest way to change…
+</section>
+<section data-field="body" class="e-content">
+<section name="8dd9" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="0c4d" id="0c4d" class="graf graf--h3 graf--leading graf--title">Dark | Light Mode in Angular</h3><figure name="3f73" id="3f73" class="graf graf--figure graf-after--h3"><img class="graf-image" data-image-id="1*1vTOiEp5oJHknrQzH2JJtg.png" data-width="1920" data-height="1080" data-is-featured="true" src="https://cdn-images-1.medium.com/max/800/1*1vTOiEp5oJHknrQzH2JJtg.png"><figcaption class="imageCaption">image by feathericons.com</figcaption></figure><p name="1289" id="1289" class="graf graf--p graf-after--figure">If you want to have a user friendly interface for your website, you should add ability to switch a mode. I show the simplest way to change a theme in Angular application.</p><p name="0bf2" id="0bf2" class="graf graf--p graf-after--p">In order to do this we need:<br>1. Create dark theme.<br>2. Create switch.<br>3. Change the mode.<br>It sound very easy. Let’s start!</p><p name="e2fb" id="e2fb" class="graf graf--p graf-after--p"><strong class="markup--strong markup--p-strong">Dark theme<br></strong>We just need to create css/scss class with some style which would be different:</p><figure name="dfbc" id="dfbc" class="graf graf--figure graf--iframe graf-after--p"><script src="https://gist.github.com/TeslenkoOleg/4206d49b05ed8e185e711f235e609126.js"></script></figure><p name="e7f7" id="e7f7" class="graf graf--p graf-after--figure">After that you need to import it to the<em class="markup--em markup--p-em"> styles.scss </em>file<em class="markup--em markup--p-em">.</em></p><figure name="15d1" id="15d1" class="graf graf--figure graf--iframe graf-after--p"><script src="https://gist.github.com/TeslenkoOleg/1ac0e9088f661e8236d7d0cc4f854892.js"></script></figure><p name="570c" id="570c" class="graf graf--p graf-after--figure"><strong class="markup--strong markup--p-strong">Switch</strong><br>It can be a regular input or a special component. You also need to add an <em class="markup--em markup--p-em">onChange</em> event, to find out about the status change:</p><figure name="fb4a" id="fb4a" class="graf graf--figure graf--iframe graf-after--p"><script src="https://gist.github.com/TeslenkoOleg/62fa2aace4831597d5a0ae67d26272eb.js"></script></figure><p name="ac84" id="ac84" class="graf graf--p graf-after--figure"><strong class="markup--strong markup--p-strong">Change the mode<br></strong>To change the style, you need to create a function <em class="markup--em markup--p-em">changeThemeColor() </em>in your typescript component<em class="markup--em markup--p-em">.</em></p><figure name="1159" id="1159" class="graf graf--figure graf--iframe graf-after--p"><script src="https://gist.github.com/TeslenkoOleg/b1bbfd7e96f35040e14aa9791cd23c3d.js"></script></figure><p name="172d" id="172d" class="graf graf--p graf-after--figure">Here we check each time the status changes to see if it contains a <em class="markup--em markup--p-em">body</em> tag, a “dark-theme” class. If it contains, we remove it, if not add it.</p><figure name="3e6b" id="3e6b" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="1*baldtGRmblwQhdLr_VQSzw.gif" data-width="206" data-height="132" src="https://cdn-images-1.medium.com/max/800/1*baldtGRmblwQhdLr_VQSzw.gif"><figcaption class="imageCaption">the result</figcaption></figure><p name="e63a" id="e63a" class="graf graf--p graf-after--figure graf--trailing">It seems so simple and obvious but sometimes so necessary.<br>If you like this article please 👏 or write a comment.</p></div></div></section>
+</section>
+<footer><p>By <a href="https://medium.com/@teslenkooleg2017" class="p-author h-card">Oleh Teslenko</a> on <a href="https://medium.com/p/cc78c9a7bca5"><time class="dt-published" datetime="2022-04-22T14:07:56.085Z">April 22, 2022</time></a>.</p><p><a href="https://medium.com/@teslenkooleg2017/dark-light-mode-in-angular-cc78c9a7bca5" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on September 8, 2024.</p></footer></article></body></html>

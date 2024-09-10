@@ -1,0 +1,72 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Fade in(out) Animations in Angular</title><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle],
+      section[data-field=description] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">Fade in(out) Animations in Angular</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+Animation is a very important part of any web application. It brings life to your code. If your context appears and disappears smoothly it…
+</section>
+<section data-field="body" class="e-content">
+<section name="8bb3" class="section section--body section--first"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="2e2f" id="2e2f" class="graf graf--h3 graf--leading graf--title">Fade in(out) Animations in Angular</h3><figure name="fc6d" id="fc6d" class="graf graf--figure graf-after--h3"><img class="graf-image" data-image-id="1*nSOwi28F_oRSxG1DyKWlxQ.jpeg" data-width="4898" data-height="3265" data-is-featured="true" src="https://cdn-images-1.medium.com/max/800/1*nSOwi28F_oRSxG1DyKWlxQ.jpeg"><figcaption class="imageCaption">Photo by <a href="https://unsplash.com/@dreamsoftheoceans" data-href="https://unsplash.com/@dreamsoftheoceans" class="markup--anchor markup--figure-anchor" rel="noopener" target="_blank">Linus Nylund</a> on <a href="http://unsplash.com" data-href="http://unsplash.com" class="markup--anchor markup--figure-anchor" rel="noopener" target="_blank">Unsplash</a></figcaption></figure><p name="c5b5" id="c5b5" class="graf graf--p graf-after--figure">Animation is a very important part of any web application. It brings life to your code. If your context appears and disappears smoothly it will be more convenient and pleasant for the user. Such apps are always in high demand among users.</p><p name="bee5" id="bee5" class="graf graf--p graf-after--p">We have to create a function with parameters: ‘timingIn’ — time in milliseconds for appear element, and ‘height’ — if you want to change the height of the element. I recommend using the ‘height’ param.</p><pre name="3ddd" id="3ddd" class="graf graf--pre graf-after--p">// animation.ts</pre><pre name="2b47" id="2b47" class="graf graf--pre graf-after--pre">export function FadeIn(timingIn: number, height: boolean = false): AnimationTriggerMetadata  {<br>  return trigger(&#39;fadeIn&#39;, [<br>    transition(&#39;:enter&#39;, [<br>      style(height ? { opacity: 0 , height: 0, } : { opacity: 0, }),<br>      animate(timingIn, style(height ? { opacity: 1, height: &#39;fit-content&#39; } : { opacity: 1, })),<br>    ]),<br>  ]);<br>}</pre><p name="6905" id="6905" class="graf graf--p graf-after--pre">Next step — import it into our ‘animation.component.ts’ file:</p><pre name="5fbc" id="5fbc" class="graf graf--pre graf-after--p">// animation.component.ts</pre><pre name="0a49" id="0a49" class="graf graf--pre graf-after--pre">import {FadeIn} from &#39;../animation&#39;;<br><br>@Component({<br>    selector: &#39;app-animation&#39;,<br>    templateUrl: &#39;./animation.component.html&#39;,<br>    animations: [FadeIn(200, true)]<br>})</pre><p name="5280" id="5280" class="graf graf--p graf-after--pre">And then set the trigger into an HTML file:</p><pre name="3fe2" id="3fe2" class="graf graf--pre graf-after--p">// animation.component.html</pre><pre name="858e" id="858e" class="graf graf--pre graf-after--pre">&lt;p *ngIf=someDynamicValue<br>   [@fadeIn] <br>&gt;Hello&lt;/p&gt;</pre><figure name="ca5c" id="ca5c" class="graf graf--figure graf-after--pre graf--trailing"><img class="graf-image" data-image-id="1*yQdwD1m0rdKDZxRjOgoYKw.gif" data-width="360" data-height="270" src="https://cdn-images-1.medium.com/max/800/1*yQdwD1m0rdKDZxRjOgoYKw.gif"><figcaption class="imageCaption">You will get a result like this gif</figcaption></figure></div></div></section><section name="2e38" class="section section--body"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><p name="9d98" id="9d98" class="graf graf--p graf--leading">If you want that your element fade in and fade out by one function, we can expand the previous one:</p><pre name="d6fb" id="d6fb" class="graf graf--pre graf-after--p">export function FadeInOut(timingIn: number, timingOut: number, height: boolean = false): AnimationTriggerMetadata  {<br>  return trigger(&#39;fadeInOut&#39;, [<br>    transition(&#39;:enter&#39;, [<br>      style(height ? { opacity: 0 , height: 0, } : { opacity: 0, }),<br>      animate(timingIn, style(height ? { opacity: 1, height: &#39;fit-content&#39; } : { opacity: 1, })),<br>    ]),<br>    transition(&#39;:leave&#39;, [<br>      animate( timingOut, style(height ? { opacity: 0, height: 0, } : { opacity: 0, })),<br>    ])<br>  ]);<br>}</pre><p name="928d" id="928d" class="graf graf--p graf-after--pre">We just added one more parameter ‘timingOut’ into our function and transition for fade-out animation.</p><p name="de29" id="de29" class="graf graf--p graf-after--p">Changes in animation.component.ts:</p><pre name="f12e" id="f12e" class="graf graf--pre graf-after--p">// animation.component.ts</pre><pre name="21bf" id="21bf" class="graf graf--pre graf-after--pre">import {FadeInOut} from &#39;../animation&#39;;<br><br>@Component({<br>    selector: &#39;app-animation&#39;,<br>    templateUrl: &#39;./animation.component.html&#39;,<br>    animations: [FadeInOut(200, 300, true)]<br>})</pre><p name="5dd0" id="5dd0" class="graf graf--p graf-after--pre">Changes in animation.component.html:</p><pre name="1af2" id="1af2" class="graf graf--pre graf-after--p">// animation.component.html</pre><pre name="f47c" id="f47c" class="graf graf--pre graf-after--pre">&lt;p *ngIf=someDynamicValue<br>   [@fadeInOut] <br>&gt; Hello / Bye &lt;/p&gt;</pre><figure name="6b10" id="6b10" class="graf graf--figure graf-after--pre graf--trailing"><img class="graf-image" data-image-id="1*5N5M4HMAd823z-mX4GixaQ.gif" data-width="498" data-height="360" src="https://cdn-images-1.medium.com/max/800/1*5N5M4HMAd823z-mX4GixaQ.gif"><figcaption class="imageCaption">might be a result</figcaption></figure></div></div></section><section name="7e5f" class="section section--body"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><p name="93e0" id="93e0" class="graf graf--p graf--leading graf--trailing">It’s a really simple example, but very useful. Thanks for reading. If you like this article, please 👏 or write a comment.</p></div></div></section><section name="f00f" class="section section--body section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><div name="227b" id="227b" class="graf graf--mixtapeEmbed graf--leading"><a href="https://medium.com/@teslenkooleg2017/angular-13-create-multiple-dynamic-components-using-directive-ngfor-effe0850a69d" data-href="https://medium.com/@teslenkooleg2017/angular-13-create-multiple-dynamic-components-using-directive-ngfor-effe0850a69d" class="markup--anchor markup--mixtapeEmbed-anchor" title="https://medium.com/@teslenkooleg2017/angular-13-create-multiple-dynamic-components-using-directive-ngfor-effe0850a69d"><strong class="markup--strong markup--mixtapeEmbed-strong">Angular 13: Create multiple dynamic components using directive — ngFor.</strong><br><em class="markup--em markup--mixtapeEmbed-em">Of course, there are many articles about creating dynamic components in Angular, and most of them describe the simplest…</em>medium.com</a><a href="https://medium.com/@teslenkooleg2017/angular-13-create-multiple-dynamic-components-using-directive-ngfor-effe0850a69d" class="js-mixtapeImage mixtapeImage u-ignoreBlock" data-media-id="01ed940bccbde241e9006b5055910302" data-thumbnail-img-id="1*wqBOf_Hc_c2MxgUjnGy4Og.png" style="background-image: url(https://cdn-images-1.medium.com/fit/c/160/160/1*wqBOf_Hc_c2MxgUjnGy4Og.png);"></a></div><div name="a573" id="a573" class="graf graf--mixtapeEmbed graf-after--mixtapeEmbed"><a href="https://medium.com/@teslenkooleg2017/dark-light-mode-in-angular-cc78c9a7bca5" data-href="https://medium.com/@teslenkooleg2017/dark-light-mode-in-angular-cc78c9a7bca5" class="markup--anchor markup--mixtapeEmbed-anchor" title="https://medium.com/@teslenkooleg2017/dark-light-mode-in-angular-cc78c9a7bca5"><strong class="markup--strong markup--mixtapeEmbed-strong">Dark | Light Mode in Angular</strong><br><em class="markup--em markup--mixtapeEmbed-em">If you want to have a user friendly interface for your website, you should add ability to switch a mode. I show the…</em>medium.com</a><a href="https://medium.com/@teslenkooleg2017/dark-light-mode-in-angular-cc78c9a7bca5" class="js-mixtapeImage mixtapeImage u-ignoreBlock" data-media-id="09279a72e9180ed52fd7bf0840728fcd" data-thumbnail-img-id="1*1vTOiEp5oJHknrQzH2JJtg.png" style="background-image: url(https://cdn-images-1.medium.com/fit/c/160/160/1*1vTOiEp5oJHknrQzH2JJtg.png);"></a></div><div name="1987" id="1987" class="graf graf--mixtapeEmbed graf-after--mixtapeEmbed graf--trailing"><a href="https://medium.com/@teslenkooleg2017/dynamic-import-ngmodule-angular-13-e7183c6743c6" data-href="https://medium.com/@teslenkooleg2017/dynamic-import-ngmodule-angular-13-e7183c6743c6" class="markup--anchor markup--mixtapeEmbed-anchor" title="https://medium.com/@teslenkooleg2017/dynamic-import-ngmodule-angular-13-e7183c6743c6"><strong class="markup--strong markup--mixtapeEmbed-strong">Dynamic import NgModule in Angular</strong><br><em class="markup--em markup--mixtapeEmbed-em">How to lazy-load NgModule and Component by using routing, everyone knows. But sometimes you need to lazy load NgModule…</em>medium.com</a><a href="https://medium.com/@teslenkooleg2017/dynamic-import-ngmodule-angular-13-e7183c6743c6" class="js-mixtapeImage mixtapeImage u-ignoreBlock" data-media-id="8140b56dca6a3aa24c9a00af84413e69" data-thumbnail-img-id="1*ZD2yDRxPcuEV_qLtnQskTw.png" style="background-image: url(https://cdn-images-1.medium.com/fit/c/160/160/1*ZD2yDRxPcuEV_qLtnQskTw.png);"></a></div></div></div></section>
+</section>
+<footer><p>By <a href="https://medium.com/@teslenkooleg2017" class="p-author h-card">Oleh Teslenko</a> on <a href="https://medium.com/p/31a80949cd2e"><time class="dt-published" datetime="2022-09-15T15:02:54.403Z">September 15, 2022</time></a>.</p><p><a href="https://medium.com/@teslenkooleg2017/fade-in-out-animations-in-angular-31a80949cd2e" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on September 8, 2024.</p></footer></article></body></html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Show More Button in Angular</title><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle],
+      section[data-field=description] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">Show More Button in Angular</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+Have you ever have a task with large lists?
+Sometimes we need to hide part of items list and show it when user will want. For example, it…
+</section>
+<section data-field="body" class="e-content">
+<section name="3c10" class="section section--body section--first"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="f3ff" id="f3ff" class="graf graf--h3 graf--leading graf--title">Show More Button in Angular</h3><figure name="7fc2" id="7fc2" class="graf graf--figure graf-after--h3"><img class="graf-image" data-image-id="1*k6EJPQDYsXsMFodA1R_2lA.jpeg" data-width="3000" data-height="1987" data-is-featured="true" src="https://cdn-images-1.medium.com/max/800/1*k6EJPQDYsXsMFodA1R_2lA.jpeg"><figcaption class="imageCaption">Photo by <a href="https://unsplash.com/@kellysikkema" data-href="https://unsplash.com/@kellysikkema" class="markup--anchor markup--figure-anchor" rel="noopener" target="_blank">Kelly Sikkema</a> on unsplash.com</figcaption></figure><p name="a327" id="a327" class="graf graf--p graf-after--figure">Have you ever have a task with large lists?<br>Sometimes we need to hide part of items list and show it when user will want. For example, it could be online shops, blogs, chats, forums or something else.<br>Let me show you the simplest way to create “show more” button in Angular app.</p><p name="5335" id="5335" class="graf graf--p graf-after--p graf--trailing">I use angular native <a href="https://angular.io/api/common/SlicePipe" data-href="https://angular.io/api/common/SlicePipe" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank"><strong class="markup--strong markup--p-strong">SlicePipe</strong></a>, which transform your data and show the number of items what you want.</p></div></div></section><section name="e505" class="section section--body"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><p name="a37d" id="a37d" class="graf graf--p graf--leading">Let’s create list of posts.</p><p name="d2a3" id="d2a3" class="graf graf--p graf-after--p">In <em class="markup--em markup--p-em">app.component.ts</em> I create an array with posts object. Also, I set number of items which would be shown.</p><pre data-code-block-mode="1" spellcheck="false" data-code-block-lang="typescript" name="9d16" id="9d16" class="graf graf--pre graf-after--p graf--preV2"><span class="pre--content"><span class="hljs-comment">// app.component.ts</span><br /><br /><span class="hljs-keyword">import</span> { <span class="hljs-title class_">Component</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@angular/core&#x27;</span>;<br /><br /><span class="hljs-meta">@Component</span>({<br />  <span class="hljs-attr">selector</span>: <span class="hljs-string">&#x27;app-root&#x27;</span>,<br />  <span class="hljs-attr">templateUrl</span>: <span class="hljs-string">&#x27;./app.component.html&#x27;</span>,<br />})<br /><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">AppComponent</span> {<br />  <span class="hljs-keyword">public</span> showCountOfPost = <span class="hljs-number">2</span>;<br />  <span class="hljs-keyword">public</span> posts = [<br />{<span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;post1&#x27;</span>},<br />{<span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;post2&#x27;</span>},<br />{<span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;post3&#x27;</span>},<br />{<span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;post4&#x27;</span>},<br />{<span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;post5&#x27;</span>},<br />{<span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;post6&#x27;</span>},<br />{<span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;post7&#x27;</span>},<br />{<span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;post8&#x27;</span>},<br />]<br /><span class="hljs-title function_">showMore</span>(<span class="hljs-params"></span>){<br />  <span class="hljs-variable language_">this</span>.<span class="hljs-property">showCountOfPost</span> += <span class="hljs-number">2</span>;<br />}</span></pre><p name="9736" id="9736" class="graf graf--p graf-after--pre">In<em class="markup--em markup--p-em"> app.component.html</em> template I use <strong class="markup--strong markup--p-strong"><em class="markup--em markup--p-em">*ngFor</em></strong> directive to render my posts. Than I add button and after click on it your lists of items will be increased.</p><pre data-code-block-mode="1" spellcheck="false" data-code-block-lang="xml" name="cf64" id="cf64" class="graf graf--pre graf-after--p graf--trailing graf--preV2"><span class="pre--content">// app.component.html<br /><br /><span class="hljs-tag">&lt;<span class="hljs-name">div</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">&quot;let post of posts | slice:0:showCountOfPost; let i=index&quot;</span>&gt;</span><br />  <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>{{post.title}}<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span><br /><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br /><span class="hljs-tag">&lt;<span class="hljs-name">button</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">&quot;showCountOfPost &lt; posts.length&quot;</span> (<span class="hljs-attr">click</span>)=<span class="hljs-string">&quot;showMore()&quot;</span>&gt;</span>Show more<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span></pre></div></div></section><section name="49d4" class="section section--body section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><div name="cf39" id="cf39" class="graf graf--mixtapeEmbed graf--leading"><a href="https://www.youtube.com/shorts/Oqkw3Y0CUEA" data-href="https://www.youtube.com/shorts/Oqkw3Y0CUEA" class="markup--anchor markup--mixtapeEmbed-anchor" title="https://www.youtube.com/shorts/Oqkw3Y0CUEA"><strong class="markup--strong markup--mixtapeEmbed-strong">show more button</strong>video result</a><a href="https://www.youtube.com/shorts/Oqkw3Y0CUEA" class="js-mixtapeImage mixtapeImage u-ignoreBlock" data-media-id="d09c784cb8b9a5504f4f08d73a913a73" data-thumbnail-img-id="0*xCGHIkl3gBWWefhP" style="background-image: url(https://cdn-images-1.medium.com/fit/c/160/160/0*xCGHIkl3gBWWefhP);"></a></div><p name="5ee7" id="5ee7" class="graf graf--p graf-after--mixtapeEmbed graf--trailing">That’s all from me. Thanks for reading.</p></div></div></section>
+</section>
+<footer><p>By <a href="https://medium.com/@teslenkooleg2017" class="p-author h-card">Oleh Teslenko</a> on <a href="https://medium.com/p/3eb4f8392da8"><time class="dt-published" datetime="2023-01-31T13:27:25.287Z">January 31, 2023</time></a>.</p><p><a href="https://medium.com/@teslenkooleg2017/show-more-button-in-angular-3eb4f8392da8" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on September 8, 2024.</p></footer></article></body></html>

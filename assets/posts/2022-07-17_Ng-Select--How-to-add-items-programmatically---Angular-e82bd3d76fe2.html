@@ -1,0 +1,72 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Ng-Select: How to add items programmatically | Angular</title><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle],
+      section[data-field=description] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">Ng-Select: How to add items programmatically | Angular</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+It would seem such a simple task, but not everything is as easy as it seems at first time. If you think that it is necessary to push into…
+</section>
+<section data-field="body" class="e-content">
+<section name="74d9" class="section section--body section--first"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="1e5b" id="1e5b" class="graf graf--h3 graf--leading graf--title">Ng-Select: How to add items programmatically | Angular</h3><figure name="72e6" id="72e6" class="graf graf--figure graf-after--h3"><img class="graf-image" data-image-id="1*G6ZyGgBHqx_BXST7R4v1rA.png" data-width="3508" data-height="2480" data-is-featured="true" src="https://cdn-images-1.medium.com/max/800/1*G6ZyGgBHqx_BXST7R4v1rA.png"></figure><p name="8caa" id="8caa" class="graf graf--p graf-after--figure">It would seem such a simple task, but not everything is as easy as it seems at first time. If you think that it is necessary to push into the array with values and that’s all, then you are wrong. I’ll show you why below.<br>First of all, install the ng-select package:</p><pre name="42fb" id="42fb" class="graf graf--pre graf-after--p">npm install --save @ng-select/ng-select</pre><p name="8d71" id="8d71" class="graf graf--p graf-after--pre">Be careful with <a href="https://www.npmjs.com/package/@ng-select/ng-select" data-href="https://www.npmjs.com/package/@ng-select/ng-select" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank">versions</a>:</p><figure name="8ed3" id="8ed3" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="1*c3SeR_dfDpajiDC4gZX_pw.png" data-width="556" data-height="886" src="https://cdn-images-1.medium.com/max/800/1*c3SeR_dfDpajiDC4gZX_pw.png"></figure><p name="8f79" id="8f79" class="graf graf--p graf-after--figure">Import the NgSelectModule and angular FormsModule modules:</p><pre name="648b" id="648b" class="graf graf--pre graf-after--p">// app.module.ts</pre><pre name="dd5a" id="dd5a" class="graf graf--pre graf-after--pre">import { NgSelectModule } from &#39;@ng-select/ng-select&#39;;<br>import { FormsModule } from &#39;@angular/forms&#39;;<br><br>@NgModule({<br>  declarations: [AppComponent],<br>  imports: [NgSelectModule, FormsModule],<br>  bootstrap: [AppComponent]<br>})<br>export class AppModule {}</pre><p name="ae0a" id="ae0a" class="graf graf--p graf-after--pre">Include a theme:</p><pre name="b97a" id="b97a" class="graf graf--pre graf-after--p">@import &quot;~@ng-select/ng-select/themes/default.theme.css&quot;;<br>// ... or <br>  @import &quot;~@ng-select/ng-select/themes/material.theme.css&quot;;</pre><p name="5797" id="5797" class="graf graf--p graf-after--pre">Prepare the code:</p><pre name="08f5" id="08f5" class="graf graf--pre graf-after--p">// app.component.ts</pre><pre name="a1e5" id="a1e5" class="graf graf--pre graf-after--pre">@Component({...})<br>export class ExampleComponent {<br><br>    selectedCar: number;<br><br>    cars = [<br>        { id: 1, name: &#39;Volvo&#39; },<br>        { id: 2, name: &#39;Saab&#39; },<br>        { id: 3, name: &#39;Opel&#39; },<br>        { id: 4, name: &#39;Audi&#39; },<br>    ];<br>}</pre><pre name="68d9" id="68d9" class="graf graf--pre graf-after--pre">// app.component.html</pre><pre name="fc9d" id="fc9d" class="graf graf--pre graf-after--pre">&lt;ng-select [items]=&quot;cars&quot; <br>           bindLabel=&quot;name&quot; <br>           bindValue=&quot;id&quot;<br>           [multiple]=&quot;true&quot; <br>           [(ngModel)]=&quot;selectedCar&quot;&gt;<br>&lt;/ng-select&gt;</pre><p name="6b15" id="6b15" class="graf graf--p graf-after--pre">Now you are ready for the most interesting things. If you do the next step it doesn’t work:</p><pre name="a739" id="a739" class="graf graf--pre graf-after--p">this.cars.push({ id: 5, name: &#39;BMW&#39; });<br>this.selectedCar.push(5);</pre><p name="282a" id="282a" class="graf graf--p graf-after--pre">First of all, you need to use ‘ViewChild’ directive:</p><pre name="07d3" id="07d3" class="graf graf--pre graf-after--p">// app.component.ts<br>@ViewChild(&#39;myselect&#39;) myselect: any;</pre><pre name="f5da" id="f5da" class="graf graf--pre graf-after--pre">// app.component.html<br>&lt;ng-select #<strong class="markup--strong markup--pre-strong"><em class="markup--em markup--pre-em">myselect<br>           </em></strong>[items]=&quot;cars&quot;<br>           bindLabel=&quot;name&quot;<br>           bindValue=&quot;id&quot;<br>           [multiple]=&quot;true&quot;<br>           [(ngModel)]=&quot;selectedCar&quot;&gt;<br>&lt;/ng-select&gt;</pre><p name="a92e" id="a92e" class="graf graf--p graf-after--pre">Then, you have to use native ng-select methods, like this:</p><pre name="66d7" id="66d7" class="graf graf--pre graf-after--p">public addItems(){<br>    let oneCar = { id: 5, name: &#39;BMW&#39; };<br>    this.myselect.itemsList.addItem(oneCar);<br>    const item = this.myselect.itemsList.findByLabel(&#39;BMW&#39;);<br>    this.myselect.select(item);<br>}</pre><p name="552a" id="552a" class="graf graf--p graf-after--pre graf--trailing">You can find a full list of ng-select methods in the <a href="https://github.com/ng-select/ng-select/blob/master/src/ng-select/lib/items-list.ts" data-href="https://github.com/ng-select/ng-select/blob/master/src/ng-select/lib/items-list.ts" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank"><strong class="markup--strong markup--p-strong">documentation</strong></a> (and <a href="https://github.com/ng-select/ng-select" data-href="https://github.com/ng-select/ng-select" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank"><strong class="markup--strong markup--p-strong">this</strong></a>).<strong class="markup--strong markup--p-strong"><br></strong>I hope that I helped you in solving your problem.</p></div></div></section><section name="f452" class="section section--body section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><p name="fb11" id="fb11" class="graf graf--p graf--leading">Thanks for reading, if you like this article you can 👏 or write a comment.<br>See also other articles about Angular features:</p><div name="8a74" id="8a74" class="graf graf--mixtapeEmbed graf-after--p"><a href="https://medium.com/@teslenkooleg2017/pipes-chain-in-angular-using-async-pipe-d83d25c808b4" data-href="https://medium.com/@teslenkooleg2017/pipes-chain-in-angular-using-async-pipe-d83d25c808b4" class="markup--anchor markup--mixtapeEmbed-anchor" title="https://medium.com/@teslenkooleg2017/pipes-chain-in-angular-using-async-pipe-d83d25c808b4"><strong class="markup--strong markup--mixtapeEmbed-strong">Pipes chain in Angular — using async pipe</strong><br><em class="markup--em markup--mixtapeEmbed-em">You can find a lot of examples how pipes works, but there is not enough information on how to use the asynchronous pipe…</em>medium.com</a><a href="https://medium.com/@teslenkooleg2017/pipes-chain-in-angular-using-async-pipe-d83d25c808b4" class="js-mixtapeImage mixtapeImage u-ignoreBlock" data-media-id="8a44803256d289bfec65e4ca6798e6ca" data-thumbnail-img-id="1*WBpTzEm6VgiQZiJOvTCmyQ.jpeg" style="background-image: url(https://cdn-images-1.medium.com/fit/c/160/160/1*WBpTzEm6VgiQZiJOvTCmyQ.jpeg);"></a></div><div name="1291" id="1291" class="graf graf--mixtapeEmbed graf-after--mixtapeEmbed"><a href="https://blog.bitsrc.io/typed-forms-in-angular-58d9cf88d74d" data-href="https://blog.bitsrc.io/typed-forms-in-angular-58d9cf88d74d" class="markup--anchor markup--mixtapeEmbed-anchor" title="https://blog.bitsrc.io/typed-forms-in-angular-58d9cf88d74d"><strong class="markup--strong markup--mixtapeEmbed-strong">How to Create Typed Forms in Angular</strong><br><em class="markup--em markup--mixtapeEmbed-em">In this article, I want to show you how to create typed forms in Angular.</em>blog.bitsrc.io</a><a href="https://blog.bitsrc.io/typed-forms-in-angular-58d9cf88d74d" class="js-mixtapeImage mixtapeImage u-ignoreBlock" data-media-id="26f865e1e7abf4cc66cb40a3aa6e2f34" data-thumbnail-img-id="0*IeXu8bHK7w22yTVC" style="background-image: url(https://cdn-images-1.medium.com/fit/c/160/160/0*IeXu8bHK7w22yTVC);"></a></div><div name="4367" id="4367" class="graf graf--mixtapeEmbed graf-after--mixtapeEmbed"><a href="https://medium.com/@teslenkooleg2017/dynamic-import-ngmodule-angular-13-e7183c6743c6" data-href="https://medium.com/@teslenkooleg2017/dynamic-import-ngmodule-angular-13-e7183c6743c6" class="markup--anchor markup--mixtapeEmbed-anchor" title="https://medium.com/@teslenkooleg2017/dynamic-import-ngmodule-angular-13-e7183c6743c6"><strong class="markup--strong markup--mixtapeEmbed-strong">Dynamic import NgModule in Angular</strong><br><em class="markup--em markup--mixtapeEmbed-em">How to lazy-load NgModule and Component by using routing, everyone knows. But sometimes you need to lazy load NgModule…</em>medium.com</a><a href="https://medium.com/@teslenkooleg2017/dynamic-import-ngmodule-angular-13-e7183c6743c6" class="js-mixtapeImage mixtapeImage u-ignoreBlock" data-media-id="338c483273a187c3080d6aae1fed5260" data-thumbnail-img-id="1*ZD2yDRxPcuEV_qLtnQskTw.png" style="background-image: url(https://cdn-images-1.medium.com/fit/c/160/160/1*ZD2yDRxPcuEV_qLtnQskTw.png);"></a></div><div name="833f" id="833f" class="graf graf--mixtapeEmbed graf-after--mixtapeEmbed graf--trailing"><a href="https://medium.com/@teslenkooleg2017/angular-13-create-multiple-dynamic-components-using-directive-ngfor-effe0850a69d" data-href="https://medium.com/@teslenkooleg2017/angular-13-create-multiple-dynamic-components-using-directive-ngfor-effe0850a69d" class="markup--anchor markup--mixtapeEmbed-anchor" title="https://medium.com/@teslenkooleg2017/angular-13-create-multiple-dynamic-components-using-directive-ngfor-effe0850a69d"><strong class="markup--strong markup--mixtapeEmbed-strong">Angular 13: Create multiple dynamic components using directive — ngFor.</strong><br><em class="markup--em markup--mixtapeEmbed-em">Of course, there are many articles about creating dynamic components in Angular, and most of them describe the simplest…</em>medium.com</a><a href="https://medium.com/@teslenkooleg2017/angular-13-create-multiple-dynamic-components-using-directive-ngfor-effe0850a69d" class="js-mixtapeImage mixtapeImage u-ignoreBlock" data-media-id="fe5b1db0dded417ad2f2dbd05eb2fea5" data-thumbnail-img-id="1*wqBOf_Hc_c2MxgUjnGy4Og.png" style="background-image: url(https://cdn-images-1.medium.com/fit/c/160/160/1*wqBOf_Hc_c2MxgUjnGy4Og.png);"></a></div></div></div></section>
+</section>
+<footer><p>By <a href="https://medium.com/@teslenkooleg2017" class="p-author h-card">Oleh Teslenko</a> on <a href="https://medium.com/p/e82bd3d76fe2"><time class="dt-published" datetime="2022-07-17T16:32:54.513Z">July 17, 2022</time></a>.</p><p><a href="https://medium.com/@teslenkooleg2017/add-items-into-ng-select-programmatically-angular-e82bd3d76fe2" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on September 8, 2024.</p></footer></article></body></html>
