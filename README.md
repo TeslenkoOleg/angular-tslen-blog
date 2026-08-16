@@ -1,21 +1,19 @@
-## T-slen Blog
-This repository is a dump of my Medium blog posts. You can find the original posts [here](https://medium.com/@teslenkooleg2017).
-I have written these posts to share my knowledge and experience with the community. 
-I hope you will find them useful.
-### Github Pages usage
-```
-npm i -g angular-cli-ghpages
-```
-you can use any github project on Github pages
-```
-ng build -c production --base-href "https://TeslenkoOleg.github.io/angular-me-github-pages/"
-```
-if you have a domain
-```
-ng build -c production --base-href "https://blog.t-slen.com"
-```
-every commit from main branch will delete CNAME so you need to add it
-```
-cp CNAME dist/ && ngh --dir=dist
+# T-Slen Blog
+
+A static technical blog mirroring [my Medium posts](https://medium.com/@teslenkooleg2017), hosted at [blog.t-slen.com](https://blog.t-slen.com).
+
+Plain HTML/CSS, no framework, no build step. Content lives as generated
+static files in `posts/` and `index.html`.
+
+## Regenerating post pages
+
+Post pages are generated from the raw Medium exports in
+`content/raw-posts/` by a one-time script. Re-run it after adding new
+raw exports to `content/raw-posts/` (and an entry to
+`content/raw-posts/posts.info.json`):
+
+```bash
+python3 scripts/generate-posts.py
 ```
 
+There is no in-app way to add posts — this is a read-only site.

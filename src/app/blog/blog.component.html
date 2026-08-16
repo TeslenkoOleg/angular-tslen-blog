@@ -1,9 +1,0 @@
-<div>
-      <ul>
-        <li *ngFor="let post of blogPosts | async" (click)="loadPost(post.fileName)">
-          <a href="javascript:void(0)">{{ post.title }} ({{post.date}})</a>
-        </li>
-      </ul>
-
-      <div *ngIf="blogContent" [innerHTML]="blogContent"></div>
-    </div>
