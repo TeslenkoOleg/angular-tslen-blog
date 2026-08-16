@@ -72,6 +72,12 @@ INDEX_PAGE = """\
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>T-Slen Blog</title>
   <meta name="description" content="A technical blog by Oleh Teslenko covering Angular, Node.js, and web development.">
+  <meta property="og:title" content="T-Slen Blog">
+  <meta property="og:description" content="A technical blog by Oleh Teslenko covering Angular, Node.js, and web development.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://blog.t-slen.com">
+  <meta property="og:image" content="https://blog.t-slen.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="styles.css">
 </head>
