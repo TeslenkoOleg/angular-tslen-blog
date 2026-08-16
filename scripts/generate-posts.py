@@ -137,6 +137,19 @@ def extract_post(raw_html: str) -> tuple[str, str, str]:
     return title, subtitle, body
 
 
+def strip_script_embeds(body: str) -> str:
+    """Replace GitHub Gist script embeds with plain links."""
+    def gist_link_replacement(match: re.Match[str]) -> str:
+        gist_url = match.group(1)
+        return f'<p class="gist-embed-link"><a href="{gist_url}" target="_blank" rel="noopener">View code on GitHub Gist &#8599;</a></p>'
+
+    return re.sub(
+        r'<script src="(https://gist\.github\.com/[^"]+)\.js"></script>',
+        gist_link_replacement,
+        body
+    )
+
+
 def main() -> None:
     OUTPUT_DIR.mkdir(exist_ok=True)
     posts = json.loads((RAW_DIR / "posts.info.json").read_text(encoding="utf-8"))
@@ -146,6 +159,7 @@ def main() -> None:
     for post in posts:
         raw_html = (RAW_DIR / post["fileName"]).read_text(encoding="utf-8")
         title, subtitle, body = extract_post(raw_html)
+        body = strip_script_embeds(body)
         slug = f"{post['date']}-{slugify(title)}"
 
         page = (
