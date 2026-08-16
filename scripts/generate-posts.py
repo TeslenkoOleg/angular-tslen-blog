@@ -156,6 +156,36 @@ def strip_script_embeds(body: str) -> str:
     )
 
 
+LEADING_DIVIDER_RE = re.compile(
+    r'^(<section[^>]*>)<div class="section-divider"><hr class="section-divider"></div>'
+)
+LEADING_TITLE_RE = re.compile(
+    r'(<div class="section-inner[^"]*">)\s*'
+    r'<h[1-6][^>]*\bclass="[^"]*\bgraf--title\b[^"]*"[^>]*>.*?</h[1-6]>',
+    re.S,
+)
+MIXTAPE_LINK_RE = re.compile(
+    r'<a\b[^>]*class="[^"]*\bmixtapeImage\b[^"]*"[^>]*>\s*</a>'
+)
+
+
+def clean_body(body: str) -> str:
+    """Remove Medium-specific cruft that doesn't translate to this site.
+
+    - The leading `<div class="section-divider">...</div>` at the very start
+      of the body (Medium hides it via CSS for the first section; we don't
+      replicate that CSS, so drop the markup instead).
+    - The leading in-body title heading (`graf--title`), which duplicates
+      the page's own `<h1>`.
+    - Empty "mixtape" related-post link cards (`mixtapeImage`), which render
+      as invisible, focusable, nameless anchors without Medium's CSS.
+    """
+    body = LEADING_DIVIDER_RE.sub(r"\1", body, count=1)
+    body = LEADING_TITLE_RE.sub(r"\1", body, count=1)
+    body = MIXTAPE_LINK_RE.sub("", body)
+    return body
+
+
 def main() -> None:
     OUTPUT_DIR.mkdir(exist_ok=True)
     posts = json.loads((RAW_DIR / "posts.info.json").read_text(encoding="utf-8"))
@@ -166,6 +196,7 @@ def main() -> None:
         raw_html = (RAW_DIR / post["fileName"]).read_text(encoding="utf-8")
         title, subtitle, body = extract_post(raw_html)
         body = strip_script_embeds(body)
+        body = clean_body(body)
         slug = f"{post['date']}-{slugify(title)}"
 
         page = (

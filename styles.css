@@ -97,3 +97,4 @@ h1, h2, h3, p { margin: 0; }
 .post-body figure { margin: 1.75rem 0; }
 .post-body figcaption { color: var(--color-text-muted); font-size: 0.85rem; margin-top: 0.5rem; text-align: center; }
 .post-body img { border-radius: var(--radius); }
+.post-body iframe { max-width: 100%; width: 100%; aspect-ratio: 16 / 9; height: auto; border: 0; border-radius: var(--radius); }
